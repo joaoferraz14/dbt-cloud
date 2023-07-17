@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: stg_payments
+    description: stripe payments data
+    columns:
+      - name: customer_id 
+        description: id of each customer
+      - name: order_id 
+        description: order id of customer

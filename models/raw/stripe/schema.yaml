@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: stripe
+    description: stripe dbt
+    database: RAW
+    schema: STRIPE
+    quoting:
+      identifier: true
+
+    tables:
+      - name: payments
+        description: stripe paymnents table
+        identifier: PAYMENT
