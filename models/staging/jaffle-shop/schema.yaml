@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: Customers data
+    columns:
+      - name: customer_id
+        description: id of each customers
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_orders
+    description: Orders data
+    config:
+      materialized: table
+    columns:
+      - name: order_id
+        description: id of each orders
+        tests:
+          - unique
+          - not_null

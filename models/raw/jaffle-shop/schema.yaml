@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  - name: jaffle_shop
+    description: jaffle shop dbt
+    database: RAW
+    schema: JAFFLE_SHOP
+    quoting:
+      identifier: true
+
+    tables:
+      - name: customers
+        description: jaffle shop customers table
+        identifier: CUSTOMERS
+
+      - name: orders
+        description: jaffle shop customers table
+        identifier: ORDERS
