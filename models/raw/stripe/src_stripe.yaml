@@ -12,3 +12,7 @@ sources:
       - name: payments
         description: stripe paymnents table
         identifier: PAYMENT
+        loaded_at_field: _BATCHED_AT
+        freshness:
+          warn_after: {count: 12, period: hour}
+          error_after: {count: 2400, period: hour}

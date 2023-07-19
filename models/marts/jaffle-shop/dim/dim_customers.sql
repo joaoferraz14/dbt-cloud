@@ -1,3 +1,4 @@
+/*dbt precedence on materialization -> deployment -> yaml file for the models -> definition on the sql code */
 {{
     config(
         materialized= 'table'
@@ -13,7 +14,7 @@ orders as (
 customer_orders as (
 
     select
-        customer_id,
+        o.customer_id,
 
         min(o.order_date) as first_order_date,
         max(o.order_date) as most_recent_order_date,
@@ -21,10 +22,8 @@ customer_orders as (
         sum(p.amount) as amount
 
     from orders as o
-    inner join {{ref('stg_payments')}} as p
-    on o.order_id = p.orderid
-    where p.status = 'success'
-
+    inner join {{ref('fact_orders')}} as p
+    on o.order_id = p.order_id
     group by 1
 
 ),
