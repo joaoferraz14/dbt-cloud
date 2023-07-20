@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: stg_payments
+    description: stripe payments data
+    columns:
+      - name: customerid 
+        description: id of each customer
+      - name: orderid 
+        description: order id of customer
+      - name: status
+        description: '{{ doc("payment_status")}}'
+        tests:
+          - accepted_values:
+              values:
+                - success
+                - fail

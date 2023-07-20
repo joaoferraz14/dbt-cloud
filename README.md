@@ -20,6 +20,9 @@ Try running the following commands:
 
 ### Generic and singular tests
 - Generic tests applied to columns (unique, not_null, accepted_values, relationships)
+    - The relationship test in dbt is a type of generic test that checks the referential integrity between two tables. In simpler terms, it makes sure that foreign key values in one table have corresponding primary key values in another table.
+    For example, if you have an orders table with a `user_id` column and a users table with an `id` column, you can set up a relationship test to ensure every `user_id` in the orders table corresponds to an `id` in the users table. This ensures there are no orphaned orders (i.e., orders without a valid user).
+    
 - sql code using the source or ref macros on tests folder -  test it run the command `dbt test --select model_name`
 - Tests can be run against your current project using a range of commands:
     `dbt test` runs all tests in the dbt project
