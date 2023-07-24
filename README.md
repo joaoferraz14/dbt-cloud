@@ -29,6 +29,7 @@ Try running the following commands:
     `dbt test --select test_type:generic`
     `dbt test --select test_type:singular`
     `dbt test --select one_specific_model`
+    `dbt test --exclude source:*` excludes all tests to run
 
 ### Materialization precedence
 - 1 dbt_project yaml file
