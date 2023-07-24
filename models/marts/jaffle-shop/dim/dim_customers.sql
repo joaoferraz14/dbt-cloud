@@ -11,6 +11,9 @@ with customers as (
 orders as (
     select * from {{ref('stg_orders')}}
 ),
+employees as (
+    select * from {{ ref('employees')}}
+),
 customer_orders as (
 
     select
@@ -36,12 +39,14 @@ final as (
         customers.last_name,
         customer_orders.first_order_date,
         customer_orders.most_recent_order_date,
+        employees.employee_id is not null as is_employee,
         coalesce(customer_orders.amount/100,0) as life_time_value,
         coalesce(customer_orders.number_of_orders, 0) as number_of_orders
 
     from customers
 
     left join customer_orders using (customer_id)
+    left join employees using (customer_id)
 
 )
 
