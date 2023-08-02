@@ -40,7 +40,8 @@ final as (
         customer_orders.first_order_date,
         customer_orders.most_recent_order_date,
         employees.employee_id is not null as is_employee,
-        coalesce(customer_orders.amount/100,0) as life_time_value,
+        employees.email,
+        coalesce({{cents_to_dollars(column_alias='customer_orders',column_name='amount', decimal_places=4)}},0) as life_time_value,
         coalesce(customer_orders.number_of_orders, 0) as number_of_orders
 
     from customers
@@ -51,3 +52,5 @@ final as (
 )
 
 select * from final
+where true
+{{ limit_dev_data(date_column_name= 'most_recent_order_date', filter_key_word='and', days_to_filter=640000) }}

@@ -65,3 +65,6 @@ Try running the following commands:
 - `snapshot`: executes "snapshot" jobs defined in a project
 - `source`: provides tools for working with source data (including validating that sources are "fresh")
 - `test`: executes tests defined in a project
+
+### DRY code and readability
+ - find a balance between, so the codes it not to complex to read making other AE's waste too much time reading it

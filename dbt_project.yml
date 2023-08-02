@@ -40,3 +40,18 @@ models:
     staging:
         +materialized: table
         on_schema_change: fail
+
+dispatch:
+  - macro_namespace: dbt
+    search_order:
+      - jaffle_shop
+      - dbt_snowflake_query_tags
+      - dbt
+on-run-start:
+  - "{{ model_query_tag() }}"
+on-run-end:
+  - "{{ model_query_tag() }}"
+
+query-comment:
+  comment: '{{ dbt_snowflake_query_tags.get_query_comment(node) }}'
+  append: true # Snowflake removes prefixed comments.
