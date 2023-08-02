@@ -1,8 +1,13 @@
-select 
-      order_id
-    , customer_id
-    , p.amount
+{% set columns = ['order_id', 'customer_id', 'p.amount'] -%}
+select
+    {% for col in columns -%}
+      {{col}}
+    {%- if not loop.last -%}
+    ,
+    {%- endif %}
+    {% endfor -%}
     from {{ref('stg_orders')}} as o
     inner join {{ref('stg_payments')}} as p
     on o.order_id= p.orderid 
     where p.status = 'success'
+    {{ limit_dev_data(date_column_name='CREATED', filter_key_word='and', alias='p', days_to_filter=640000) }}
