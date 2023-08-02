@@ -30,6 +30,7 @@ Try running the following commands:
     `dbt test --select test_type:singular`
     `dbt test --select one_specific_model`
     `dbt test --exclude source:*` excludes all tests to run
+    ` dbt test -m package:<package_name>` test the package
 
 ### Materialization precedence
 - 1 dbt_project yaml file
@@ -43,6 +44,7 @@ Try running the following commands:
 - `dbt run --select my_model+1`         # select my_model and its first-degree children
 - `dbt run --select 2+my_model`         # select my_model, its first-degree parents, and its second-degree parents ("grandparents")
 - `dbt run --select 3+my_model+4`       # select my_model, its parents up to the 3rd degree, and its children down to the 4th degree
+-  `dbt run-operation <macro_name> --args <args if they exists>`     # run a specific macro with args, like dry_run 
 
 ### Use the following dbt commands in the CLI and use the dbt prefix. For example, to run the test command, type dbt test. (https://docs.getdbt.com/reference/dbt-commands)
 

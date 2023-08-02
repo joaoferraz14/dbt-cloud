@@ -9,3 +9,5 @@ seeds:
         tests:
           - unique
           - not_null
+  - name: snowflake_contract_rates
+    description: snowflake contract rates

@@ -3,3 +3,4 @@ version: 2
 models:
   - name: dim_customers
     description: Customers data dimension
+    tags: [customer_dim]

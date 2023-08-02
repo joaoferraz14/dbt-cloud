@@ -35,11 +35,14 @@ models:
   jaffle_shop:
     # Applies to all files under models/example/
     marts:
-       +materialized: table
+       +materialized: "{{ 'view' if target.name == 'dev' else 'table' }}"
        on_schema_change: fail
     staging:
-        +materialized: table
+        +materialized: "{{ 'view' if target.name == 'dev' else 'table' }}"
         on_schema_change: fail
+  snowflake_spend:
+    +enable: true
+    +schema: snowflake_costs
 
 dispatch:
   - macro_namespace: dbt
@@ -47,10 +50,6 @@ dispatch:
       - jaffle_shop
       - dbt_snowflake_query_tags
       - dbt
-on-run-start:
-  - "{{ model_query_tag() }}"
-on-run-end:
-  - "{{ model_query_tag() }}"
 
 query-comment:
   comment: '{{ dbt_snowflake_query_tags.get_query_comment(node) }}'

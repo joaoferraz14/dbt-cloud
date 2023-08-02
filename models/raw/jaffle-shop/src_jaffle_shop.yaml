@@ -3,7 +3,11 @@ version: 2
 sources:
   - name: jaffle_shop #if the schema key is not specified dbt will use the source name as the schema name
     description: jaffle shop dbt
-    database: RAW
+    database: |
+      {%- if  target.name == "dev" -%} RAW
+      {%- elif target.name != "dev"  -%} RAW_PRD
+      {%- else -%} invalid_database
+      {%- endif -%}
     schema: JAFFLE_SHOP
     quoting:
       identifier: true
