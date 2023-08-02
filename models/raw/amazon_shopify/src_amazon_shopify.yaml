@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: amazon_shopify
+    description: amazon shopify dbt
+    database: RAW
+    schema: PUBLIC
+    quoting:
+      identifier: true
+
+    tables:
+      - name: orders_amazon
+        description: amazon orders
+        identifier: ORDERS__AMAZON
+      - name: orders_shopify
+        description: shopify orders
+        identifier: ORDERS__shopify
