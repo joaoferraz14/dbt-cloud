@@ -40,7 +40,7 @@ final as (
         customer_orders.first_order_date,
         customer_orders.most_recent_order_date,
         employees.employee_id is not null as is_employee,
-        employees.email,
+        {{ dbt_privacy.mask_email("email") }} as email,
         coalesce({{cents_to_dollars(column_alias='customer_orders',column_name='amount', decimal_places=4)}},0) as life_time_value,
         coalesce(customer_orders.number_of_orders, 0) as number_of_orders
 

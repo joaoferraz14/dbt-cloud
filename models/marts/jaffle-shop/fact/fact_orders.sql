@@ -1,5 +1,6 @@
 {% set columns = ['order_id', 'customer_id', 'p.amount'] -%}
 select
+    {{ dbt_utils.generate_surrogate_key(['order_id', 'customer_id'])}} as unique_key,
     {% for col in columns -%}
       {{col}}
     {%- if not loop.last -%}
