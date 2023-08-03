@@ -44,13 +44,7 @@ models:
     +enable: true
     +schema: snowflake_costs
 
-dispatch:
-  - macro_namespace: dbt
-    search_order:
-      - jaffle_shop
-      - dbt_snowflake_query_tags
-      - dbt
+on-run-start:
 
-query-comment:
-  comment: '{{ dbt_snowflake_query_tags.get_query_comment(node) }}'
-  append: true # Snowflake removes prefixed comments.
+query-comment: "{{ 'run by ' ~ target.user ~ ' in dbt' if target.name == 'dev' else 'run by production system user' }}"
+

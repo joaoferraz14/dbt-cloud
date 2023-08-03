@@ -1,8 +1,6 @@
-/*dbt precedence on materialization -> deployment -> yaml file for the models -> definition on the sql code */
-{{
-    config(
-        materialized= 'table'
-    )
+{{ config(
+    materialization = 'table'
+    ) 
 }}
 
 with customers as (

@@ -1,0 +1,6 @@
+version: 2
+
+models:
+  - name: union_tables_by_orders_prefix
+    description: amazon shopify moke data
+    tags: [moke_data_amazon_shopify]
