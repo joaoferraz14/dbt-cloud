@@ -15,7 +15,7 @@
     {% endset %}
 
     {{ log('\nGenerating cleanup queries...\n', info=True) }}
-    {% set drop_queries = run_query(get_drop_commands_query).columns[1].values() %}
+    {% set drop_queries = run_query(get_drop_commands_query).columns[1].values() %} 
 
     {% for query in drop_queries %}
         {% if dry_run %}
