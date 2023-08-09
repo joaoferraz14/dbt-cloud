@@ -2,4 +2,12 @@ version: 2
 
 models:
   - name: fact_orders
-    description: Oders data fact
+    description: Orders data fact
+
+  - name: int_orders__pivoted
+    description: Pivoted data for orders
+    columns:
+      - name: orderid
+        tests:
+          - not_null:
+              where: "date_column < current_date - interval '3 days'"
