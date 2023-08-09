@@ -7,7 +7,7 @@ models:
   - name: int_orders__pivoted
     description: Pivoted data for orders
     columns:
-      - name: orderid
+      - name: dbt_updated_at
         tests:
           - not_null:
-              where: "date_column < current_date - interval '3 days'"
+              where: "dbt_updated_at < current_date - interval '3 days'"

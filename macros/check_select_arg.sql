@@ -3,7 +3,7 @@
     {% if
         not invocation_args_dict.select
         and target.name not in ['prod']
-        and invocation_args_dict.which in ['build', 'run', 'test', 'source', 'snapshot']
+        and invocation_args_dict.which in ['build', 'run', 'test', 'source', 'snapshot', 'seed']
     %}
 
         {{ exceptions.raise_compiler_error(" ❌ Error: You must provide at least one select argument") }}
