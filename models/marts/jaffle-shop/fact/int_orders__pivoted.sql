@@ -14,6 +14,7 @@ pivoted as (
         ,
         {%- endif %}
         {% endfor -%}
+        , current_date as dbt_updated_at
 
     from payments
     group by 1
