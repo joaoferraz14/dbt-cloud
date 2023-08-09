@@ -47,6 +47,8 @@ models:
 on-run-start:
   - "{{ check_select_arg() }}"
   - "{{ set_query_tag() }}"
+on-run-end:
+  - "{{ clean_stale_models(dry_run=(False if target.name == 'prod' else True)) }}"
 
 query-comment: "{{ 'run by ' ~ target.user ~ ' in dbt' if target.name == 'dev' else 'run by production system user' }}"
 
