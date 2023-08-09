@@ -10,7 +10,7 @@
             'DROP ' || drop_type || ' {{ database | upper }}.' || table_schema || '.' || table_name || ';'
         from {{ database }}.information_schema.tables 
         where table_schema = '{{ schema | upper }}'
-        and last_altered <=  DATEADD(days, {{  days }}, current_date) 
+        and last_altered <=  DATEADD(days, {{ - days }}, current_date) 
     {% endset %}
 
     {{ log('\nGenerating cleanup queries...\n' ~ get_drop_commands_query, info=True) }}
