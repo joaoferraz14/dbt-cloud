@@ -52,7 +52,8 @@ final as (
 )
 
 select * from final
+where 1=1
     {% if is_incremental() %}
-    where dbt_updated_at >= (select max(dbt_updated_at) from {{this}})
+    and dbt_updated_at >= (select max(dbt_updated_at) from {{this}})
     {% endif %}
 {{ limit_dev_data(date_column_name= 'most_recent_order_date', filter_key_word='and', days_to_filter=640000) }}
