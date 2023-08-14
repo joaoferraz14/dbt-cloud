@@ -1,5 +1,7 @@
 {{ config(
-    materialization = 'table'
+    materialization = 'incremental',
+    unique_key='customer_id',
+    incremental_strategy='delete+insert'
     ) 
 }}
 
@@ -41,7 +43,6 @@ final as (
         {{ dbt_privacy.mask_email("email") }} as email,
         coalesce({{cents_to_dollars(column_alias='customer_orders',column_name='amount', decimal_places=4)}},0) as life_time_value,
         coalesce(customer_orders.number_of_orders, 0) as number_of_orders
-
     from customers
 
     left join customer_orders using (customer_id)
@@ -50,5 +51,7 @@ final as (
 )
 
 select * from final
-where true
+    {% if is_incremental() %}
+    where true
+    {% endif %}
 {{ limit_dev_data(date_column_name= 'most_recent_order_date', filter_key_word='and', days_to_filter=640000) }}
