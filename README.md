@@ -70,3 +70,7 @@ Try running the following commands:
 
 ### DRY code and readability
  - find a balance between, so the codes it not to complex to read making other AE's waste too much time reading it
+ 
+
+### close enough and performant
+- define the incremental models with a delta of days and, from time to time, do a full refresh depending on the use case

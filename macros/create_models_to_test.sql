@@ -10,7 +10,7 @@
             'CREATE OR REPLACE ' || type_table || ' {{ database | upper }}.' || '{{ schema | upper}}' || '.' || table_name || ' AS (SELECT * FROM {{database}}.PRD.' || table_name || ' LIMIT 100);'
         from {{ database }}.information_schema.tables 
         where table_schema = 'PRD'
-        and last_altered >=  DATEADD(days, {{ - days }}, current_date) 
+        and last_altered >=  DATEADD('day', {{ - days }}, current_date) 
     {% endset %}
 
     {{ log('\nGenerating cleanup queries...\n' ~ get_clone_commands_query, info=True) }}
