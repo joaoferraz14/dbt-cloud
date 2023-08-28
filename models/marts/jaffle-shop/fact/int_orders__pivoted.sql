@@ -21,3 +21,4 @@ pivoted as (
 )
 
 select * from pivoted
+-- some comment
